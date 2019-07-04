@@ -27,18 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 
-
-
-// MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-//   if (error) {
-//     console.log(error);
-//     throw error;
-//   }
-//   database = client.db(DATABASE_NAME);
-//   collection = database.collection("all");
-//   console.log("Connected to `" + DATABASE_NAME + "`!");
-// });
-// build Random user db
 const r = new RandomUser();
 const fs = require('fs');
 
