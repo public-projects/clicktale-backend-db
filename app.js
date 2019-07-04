@@ -9,8 +9,6 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var chatbotRouter = require('./routes/chatbot');
-var localFilesRouter = require('./routes/local-files');
 var app = express();
 // chatbotdb
 const BodyParser = require("body-parser");
@@ -31,15 +29,15 @@ app.use(BodyParser.json());
 
 
 
-MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  database = client.db(DATABASE_NAME);
-  collection = database.collection("all");
-  console.log("Connected to `" + DATABASE_NAME + "`!");
-});
+// MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
+//   if (error) {
+//     console.log(error);
+//     throw error;
+//   }
+//   database = client.db(DATABASE_NAME);
+//   collection = database.collection("all");
+//   console.log("Connected to `" + DATABASE_NAME + "`!");
+// });
 // build Random user db
 const r = new RandomUser();
 const fs = require('fs');
@@ -52,8 +50,7 @@ r.getUsers({ seed: "abc", results: 5000, inc: "name,gender, email, picture" }, f
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/chatbot', chatbotRouter);
-app.use('/local-files', localFilesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
